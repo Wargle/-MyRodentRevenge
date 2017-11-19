@@ -14,13 +14,16 @@ import javafx.scene.image.Image;
 public class Normal extends StratEtatChat {
 
     public Normal(Chat c) {
-        chat = c;
-        image = new Image("/resources/textures/enemyNormal.png");
+        super("/resources/textures/enemyNormal.png", c);
     }
 
     @Override
     public ChangePosition calculMove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO
+        if(canMove()) {
+            return null;
+        }
+        return null;
     }
     
 }

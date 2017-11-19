@@ -17,19 +17,27 @@ public class Chat extends Entite {
     
     public Chat(double x, double y, String img) {
         super(x, y, img);
+        stratEtat = new Normal(this);
         TYPE = "Chat";
-        changerStratEtat(new Normal(this));
     }
     
     @Override
     public boolean deplacer(ChangePosition cp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        x += cp.getChangeC();
+        y += cp.getChangeL();
+        return true;
     }
     
     public void jouer() {
         //TODO
-        setX(0);
-        changerStratEtat(new Sleep(this));
+        ChangePosition cp = stratEtat.calculMove();
+        if(cp == null){
+            changerStratEtat(new Sleep(this));
+        }
+        else {
+            changerStratEtat(new Normal(this));
+            deplacer(cp);
+        }
     }
     
     public void changerStratEtat(StratEtatChat e) {

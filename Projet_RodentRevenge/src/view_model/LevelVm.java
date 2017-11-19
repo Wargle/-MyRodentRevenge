@@ -5,6 +5,7 @@
  */
 package view_model;
 
+import java.util.Map;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -17,38 +18,44 @@ import model.Level;
  * @author Eleme
  */
 public class LevelVm {
-    private ObservableList<MyImageView> obsImages = FXCollections.observableArrayList();
-    private ListProperty<MyImageView> imagesProperty = new SimpleListProperty(obsImages);
-        public ObservableList<MyImageView> getImages(){ return imagesProperty.get(); }
-        public void setImages(ObservableList<MyImageView> newValue){ imagesProperty.set(newValue); }
-        public ListProperty<MyImageView> getImagesProperty(){ return imagesProperty; }
+    public static Map params;
+    
+    private ObservableList<EntiteVm> obsImages = FXCollections.observableArrayList();
+    private ListProperty<EntiteVm> imagesProperty = new SimpleListProperty(obsImages);
+        public ObservableList<EntiteVm> getImages(){ return imagesProperty.get(); }
+        public void setImages(ObservableList<EntiteVm> newValue){ imagesProperty.set(newValue); }
+        public ListProperty<EntiteVm> getImagesProperty(){ return imagesProperty; }
         
     private ClockVm cm;
-    private MyImageView sourisVm;
+    private EntiteVm sourisVm;
     
     public ClockVm getClockVm() { return cm; }
-    public MyImageView getSourisVm() { return sourisVm; }
+    public EntiteVm getSourisVm() { return sourisVm; }
 
-    private Level model = new Level(10, 8);
+    private Level model;
     
-    public LevelVm() {
+    public LevelVm() { //TODO
+        params = model.params;
+        
+        model = new Level(32, 10, 8);
         cm = new ClockVm(model.getClock());
-        sourisVm = new MyImageView(model.getSouris());
-        ajouter(new MyImageView(new Chat(1, 1, "/resources/textures/enemySleep.png")));
-        ajouter(new MyImageView(new Chat(2, 2, "/resources/textures/enemySleep.png")));
+        sourisVm = new EntiteVm(model.getSouris());
+        
+        ajouter(new EntiteVm(new Chat(1, 1, "/resources/textures/enemyNormal.png")));
+        ajouter(new EntiteVm(new Chat(2, 2, "/resources/textures/enemyNormal.png")));
     }
         
-    public void ajouter(MyImageView iv) { model.ajouter((Chat)iv.getModel()); obsImages.add(iv); }
+    public void ajouter(EntiteVm iv) { model.ajouter((Chat)iv.getModel()); obsImages.add(iv); }
     
     public void faireJouerChat() {
         model.faireJouerChat();
-        for(MyImageView iv : obsImages){
+        for(EntiteVm iv : obsImages){
             iv.setMyProperties();
         }
     }
     
-    public ObservableList<MyImageView> getAllEntites() {
-        ObservableList<MyImageView> res = FXCollections.observableArrayList();
+    public ObservableList<EntiteVm> getAllEntites() {
+        ObservableList<EntiteVm> res = FXCollections.observableArrayList();
         res.addAll(obsImages);
         res.add(sourisVm);
         return res;

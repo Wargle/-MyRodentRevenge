@@ -40,7 +40,7 @@ public class LevelWindowController implements Initializable {
     
     //TODO
     LevelVm lm = new LevelVm();
-    MyImageView souris;
+    EntiteVm souris;
     
     Timeline timeline = new Timeline(new KeyFrame(
         Duration.millis(1000),
@@ -81,6 +81,9 @@ public class LevelWindowController implements Initializable {
         mapControl.put(KeyCode.RIGHT, (s) -> { faireJouerSouris(new ChangePosition(1, 0)); return true; });
         mapControl.put(KeyCode.SPACE, (s) -> { togglePlayPause(); return true; });
         
+        mainPane.setPrefSize((int) LevelVm.params.get("HORIZONTAL_MAX") * (double) LevelVm.params.get("IMAGE_SIZE"),
+                (int) LevelVm.params.get("VERTICAL_MAX") * (double) LevelVm.params.get("IMAGE_SIZE"));
+        
         souris = lm.getSourisVm();
         
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), ex -> test()));
@@ -92,7 +95,7 @@ public class LevelWindowController implements Initializable {
         
         mainPane.setOnKeyPressed((event) -> {
             Predicate p = mapControl.get(event.getCode());
-            if(p != null)
+            if(p != null && !isPause)
                 p.test(null);
         });
     }    

@@ -19,10 +19,11 @@ public abstract class Entite {
     protected String TYPE;
     
     public Entite(double x, double y, String img){
-        image = new Image(img);
+        double size = (double) Level.params.get("IMAGE_SIZE");
+
+        image = new Image(img, size, size, true, true);
         this.x = x;
         this.y = y;
-        TYPE = "Entite";
     }
     
     public void setImage(Image i) {

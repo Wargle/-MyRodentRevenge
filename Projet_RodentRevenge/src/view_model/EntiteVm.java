@@ -18,7 +18,7 @@ import model.Entite;
  *
  * @author Eleme
  */
-public class MyImageView extends ImageView {
+public class EntiteVm extends ImageView {
 
     private final ObjectProperty bindImage = new SimpleObjectProperty<>();
     public Object getBindImage() { return bindImage.get(); }
@@ -32,7 +32,7 @@ public class MyImageView extends ImageView {
     }
 
     public void setBindX(double value) {
-        bindX.set(value * 32);
+        bindX.set(value * (double) LevelVm.params.get("IMAGE_SIZE"));
     }
 
     public DoubleProperty bindXProperty() {
@@ -45,7 +45,7 @@ public class MyImageView extends ImageView {
     }
 
     public void setBindY(double value) {
-        bindY.set(value * 32);
+        bindY.set(value * (double) LevelVm.params.get("IMAGE_SIZE"));
     }
 
     public DoubleProperty bindYProperty() {
@@ -54,7 +54,7 @@ public class MyImageView extends ImageView {
     
     private Entite model;
     
-    public MyImageView(Entite m){
+    public EntiteVm(Entite m){
         model = m;
         setMyProperties();
         //addMyProperties();

@@ -14,13 +14,16 @@ import javafx.scene.image.Image;
 public class Sleep extends StratEtatChat {
 
     public Sleep(Chat c) {
-        chat = c;
-        image = new Image("/resources/textures/enemySleep.png");
+        super("/resources/textures/enemySleep.png", c);
     }
 
     @Override
     public ChangePosition calculMove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO
+        if(canMove()) {
+            return new ChangePosition(0, 1);
+        }
+        return null;
     }
     
 }

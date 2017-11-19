@@ -14,6 +14,19 @@ import javafx.scene.image.Image;
 public abstract class StratEtatChat {
     protected Image image;
     protected Chat chat;
+
+    public StratEtatChat(String img, Chat c) {
+        chat = c;
+        
+        double size = (double) Level.params.get("IMAGE_SIZE");
+        image = new Image(img, size, size, true, true);
+    }
+    
+    
+    protected boolean canMove() {
+        //TOFO
+        return false;
+    }
     
     public abstract ChangePosition calculMove();
     

@@ -14,16 +14,19 @@ import java.util.Map;
  *
  * @author Eleme
  */
-public class Level {
+public class Level { //TODO
     public static Map params = new HashMap<String, Object>();
     
     private List<Chat> es = new ArrayList<>();
     private Clock c = new Clock();
-    private Entite souris = new Souris(5, 2, "/resources/textures/player.png");
+    private Entite souris;
     
-    public Level(int tailleX, int tailleY) {
+    public Level(double tailleImg, int tailleX, int tailleY) {
+        params.put("IMAGE_SIZE", tailleImg);
         params.put("HORIZONTAL_MAX", tailleX);
         params.put("VERTICAL_MAX", tailleY);
+        
+        souris = new Souris(5, 2, "/resources/textures/player.png");
     }
     
     public void ajouter(Chat i) { es.add(i); }
