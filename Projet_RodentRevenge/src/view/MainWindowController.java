@@ -42,9 +42,11 @@ public class MainWindowController implements Initializable {
         //TODO
         Stage stage = new Stage();
         Scene scene = new Scene((Parent) FXMLLoader.load(getClass().getResource("/fxml/LevelWindow.fxml")));
-        scene.getStylesheets().add("/resources/style/style.css");
         stage.setScene(scene);
         stage.show();
+        
+        Stage main = (Stage) listLevels.getScene().getWindow();
+        main.close();
     }
     
     @FXML

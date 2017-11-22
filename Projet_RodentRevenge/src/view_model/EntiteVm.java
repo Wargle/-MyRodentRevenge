@@ -56,7 +56,7 @@ public class EntiteVm extends ImageView {
     
     public EntiteVm(Entite m){
         model = m;
-        setMyProperties();
+        updateProperties();
         //addMyProperties();
         
         imageProperty().bindBidirectional(bindImage);
@@ -76,7 +76,7 @@ public class EntiteVm extends ImageView {
         });
     }
     
-    public void setMyProperties(){
+    public void updateProperties(){
         setBindImage(model.getImage());
         setBindX(model.getX());
         setBindY(model.getY());
@@ -86,6 +86,6 @@ public class EntiteVm extends ImageView {
     
     public void deplacer(ChangePosition cp) {
         model.deplacer(cp);
-        setMyProperties();
+        updateProperties();
     }
 }

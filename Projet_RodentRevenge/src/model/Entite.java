@@ -12,47 +12,37 @@ import javafx.scene.image.Image;
  * @author Eleme
  */
 public abstract class Entite {
+    protected GestPosition refGest;
+    
     protected Image image;
     
     protected double x = 2, y = 3;
     
     protected String TYPE;
     
-    public Entite(double x, double y, String img){
+    public Entite(GestPosition g, double x, double y, String img){
         double size = (double) Level.params.get("IMAGE_SIZE");
+        refGest = g;
 
         image = new Image(img, size, size, true, true);
         this.x = x;
         this.y = y;
     }
     
-    public void setImage(Image i) {
-        image = i;
-    }
-    public Image getImage() {
-        return image;
-    }
+    public void setImage(Image i) { image = i; }
+    public Image getImage() { return image; }
 
-    public double getX() {
-        return x;
-    }
+    public double getX() { return x; }
+    public void setX(double x) { this.x = x; }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
+    public double getY() { return y; }
+    public void setY(double y) { this.y = y; }
     
-    public abstract boolean deplacer(ChangePosition cp);/* {
-        x += cp.getChangeC();
-        y += cp.getChangeL();
-    }*/
+    public abstract boolean deplacer(ChangePosition cp);
     
     public String getTYPE() { return TYPE; }
+    
+    protected void notifyMove(double oC, double oL) {
+        refGest.changePosition(oC, x, oL, y);
+    }
 }

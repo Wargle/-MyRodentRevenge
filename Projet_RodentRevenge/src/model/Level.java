@@ -17,22 +17,42 @@ import java.util.Map;
 public class Level { //TODO
     public static Map params = new HashMap<String, Object>();
     
-    private List<Chat> es = new ArrayList<>();
-    private Clock c = new Clock();
+    private List<Chat> cs = new ArrayList<>();
+    private List<Block> bs = new ArrayList<>();
     private Entite souris;
     
+    private Clock c = new Clock();
+    private GestPosition gest;
+    
     public Level(double tailleImg, int tailleX, int tailleY) {
+        gest = new GestPosition();
+        
         params.put("IMAGE_SIZE", tailleImg);
         params.put("HORIZONTAL_MAX", tailleX);
         params.put("VERTICAL_MAX", tailleY);
         
-        souris = new Souris(5, 2, "/resources/textures/player.png");
+        souris = new Souris(gest, 5, 2);
+        gest.addPosition(5, 2, souris);
     }
     
-    public void ajouter(Chat i) { es.add(i); }
+    public boolean ajouter(Chat c) { 
+        if(gest.addPosition(c.getX(), c.getY(), c)) {
+            cs.add(c); 
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean ajouter(Block b) { 
+        if(gest.addPosition(b.getX(), b.getY(), b)) {
+            bs.add(b);
+            return true;
+        }
+        return false;
+    }
     
     public void faireJouerChat() {
-        for(Chat c : es){
+        for(Chat c : cs){
             c.jouer();
         }
     }
@@ -41,9 +61,12 @@ public class Level { //TODO
     
     public Entite getSouris() { return souris; }
     
+    public GestPosition getGest() { return gest; }
+    
     public ArrayList<Entite> getAllEntites() {
         ArrayList<Entite> res = new ArrayList<Entite>();
-        res.addAll(es);
+        res.addAll(cs);
+        res.addAll(bs);
         res.add(souris);
         return res;
     }

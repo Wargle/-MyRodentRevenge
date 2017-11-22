@@ -10,8 +10,7 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Chat;
-import model.Level;
+import model.*;
 
 /**
  *
@@ -37,21 +36,39 @@ public class LevelVm {
     public LevelVm() { //TODO
         params = model.params;
         
-        model = new Level(32, 10, 8);
+        model = new Level(32, 12, 12);
         cm = new ClockVm(model.getClock());
         sourisVm = new EntiteVm(model.getSouris());
         
-        ajouter(new EntiteVm(new Chat(1, 1, "/resources/textures/enemyNormal.png")));
-        ajouter(new EntiteVm(new Chat(2, 2, "/resources/textures/enemyNormal.png")));
+        ajouterChat(new EntiteVm(new Chat(model.getGest(), 1, 1)));
+        ajouterChat(new EntiteVm(new Chat(model.getGest(), 2, 2)));
+        
+        ajouterBlock(new EntiteVm(new Block(model.getGest(), 5, 6)));
+        ajouterBlock(new EntiteVm(new Block(model.getGest(), 6, 6)));
+        ajouterBlock(new EntiteVm(new Border(model.getGest(), 7, 6)));
     }
         
-    public void ajouter(EntiteVm iv) { model.ajouter((Chat)iv.getModel()); obsImages.add(iv); }
+    public void ajouterChat(EntiteVm iv) { 
+        if(model.ajouter((Chat)iv.getModel()))
+            obsImages.add(iv); 
+    }
+    
+    public void ajouterBlock(EntiteVm iv) { 
+        if(model.ajouter((Block)iv.getModel()))
+            obsImages.add(iv); 
+    }
     
     public void faireJouerChat() {
         model.faireJouerChat();
         for(EntiteVm iv : obsImages){
-            iv.setMyProperties();
+            iv.updateProperties();
         }
+    }
+    
+    public void faireJouerSouris(ChangePosition cp) {
+        sourisVm.deplacer(cp);
+        for(EntiteVm em : obsImages)
+            em.updateProperties();
     }
     
     public ObservableList<EntiteVm> getAllEntites() {

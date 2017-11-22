@@ -5,20 +5,25 @@
  */
 package model;
 
+import javafx.scene.image.Image;
+
 /**
  *
  * @author Eleme
  */
-public class Souris extends Entite{
-
-    public Souris(GestPosition g, double x, double y) {
-        super(g, x, y, "/resources/textures/player.png");
-        TYPE = "Souris";
+public class Block extends Entite {
+    
+    public Block(GestPosition g, double x, double y) {
+        super(g, x, y, "/resources/textures/block.png");
+        TYPE = "Block";
     }
-
+    
+    protected Block(GestPosition g, double x, double y, String img){
+        super(g, x, y, img);
+    }
+    
     @Override
     public boolean deplacer(ChangePosition cp) {
-        //TODO
         double tempX = x + cp.getChangeC(), tempY = y + cp.getChangeL();
         if(tempX >= 0 && tempX < (int) Level.params.get("HORIZONTAL_MAX") && tempY >= 0 && tempY < (int) Level.params.get("VERTICAL_MAX")) {
             Entite getE = refGest.getEntite(tempX, tempY);
@@ -33,6 +38,8 @@ public class Souris extends Entite{
                     y += cp.getChangeL();
                     notifyMove(x - cp.getChangeC(), y - cp.getChangeL());
                 }
+                else
+                    return false;
             }
             return true;
         }

@@ -15,14 +15,19 @@ public class Chat extends Entite {
 
     private StratEtatChat stratEtat;
     
-    public Chat(double x, double y, String img) {
-        super(x, y, img);
+    public Chat(GestPosition g, double x, double y, String img) {
+        super(g, x, y, img);
         stratEtat = new Normal(this);
         TYPE = "Chat";
     }
     
+    public Chat(GestPosition g, double x, double y){
+        this(g, x, y, "/resources/textures/enemyNormal.png");
+    }
+    
     @Override
     public boolean deplacer(ChangePosition cp) {
+        //TODO
         x += cp.getChangeC();
         y += cp.getChangeL();
         return true;

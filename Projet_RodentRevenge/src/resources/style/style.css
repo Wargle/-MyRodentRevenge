@@ -7,7 +7,54 @@ and open the template in the editor.
     Created on : 12 nov. 2017, 16:55:35
     Author     : Eleme
 */
-Pane{
+
+@font-face {
+    font-family: 'ArcadeClassic';
+    src: url("ARCADECLASSIC.TTF");
+}
+@font-face {
+    font-family: 'Game Over';
+    src: url("game_over.ttf");
+}
+
+Pane {
+    -fx-border-color: #000000;
+    -fx-border-width: 1;
+}
+
+#mainPane {
     -fx-background-image: url("../textures/background.png");
     -fx-background-repeat: repeat;
+}
+
+#topPane .label {
+    -fx-alignment: center;
+    -fx-pref-height: 25;
+    -fx-font-family: ArcadeClassic;
+    -fx-font-size: 20;
+}
+
+#menu {
+    -fx-background-color: #ffffff;
+    -fx-spacing: 5;
+}
+
+#menu .label {
+    -fx-alignment: center;
+    -fx-background-color: linear-gradient(#3366ff, #3333ff);
+    -fx-text-fill: black;
+    -fx-font-family: "Game Over";
+    -fx-font-size: 42;
+}
+
+Button {
+    -fx-pref-height: 30;
+    -fx-pref-width: 130;
+    -fx-background-color: #3333ff;
+    -fx-text-fill: black;
+    -fx-font-family: ArcadeClassic;
+}
+
+Button:hover {
+    -fx-background-color: #3366ff;
 }
