@@ -90,4 +90,8 @@ public class FileLevelVm {
     public FileLevel getModel() {
         return model;
     }
+    
+    public boolean equalsByName(String n) {
+        return model.equalsByName(n);
+    }
 }

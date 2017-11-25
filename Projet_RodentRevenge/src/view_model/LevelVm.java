@@ -32,23 +32,25 @@ public class LevelVm {
     public EntiteVm getSourisVm() { return sourisVm; }
 
     private Level model;
+
+    public LevelVm(Level model) {
+        params = model.params;
+        
+        this.model = model;
+        cm = new ClockVm(model.getClock());
+    }
     
-    public LevelVm() { //TODO
+    /*public LevelVm() { //TODO
         params = model.params;
         
         model = new Level(32, 12, 12);
         cm = new ClockVm(model.getClock());
         sourisVm = new EntiteVm(model.getSouris());
+    }*/
+    
+    public Level getModel() { return model; }
         
-        ajouterChat(new EntiteVm(new Chat(model.getGest(), 1, 1)));
-        ajouterChat(new EntiteVm(new Chat(model.getGest(), 2, 2)));
-        
-        ajouterBlock(new EntiteVm(new Block(model.getGest(), 5, 6)));
-        ajouterBlock(new EntiteVm(new Block(model.getGest(), 6, 6)));
-        ajouterBlock(new EntiteVm(new Border(model.getGest(), 7, 6)));
-    }
-        
-    public void ajouterChat(EntiteVm iv) { 
+    /*public void ajouterChat(EntiteVm iv) { 
         if(model.ajouter((Chat)iv.getModel()))
             obsImages.add(iv); 
     }
@@ -56,6 +58,13 @@ public class LevelVm {
     public void ajouterBlock(EntiteVm iv) { 
         if(model.ajouter((Block)iv.getModel()))
             obsImages.add(iv); 
+    }*/
+    
+    public void setAllEntiteVm() {
+        sourisVm = new EntiteVm(model.getSouris());
+        for(Entite e : model.getAllEntites()) {
+            obsImages.add(new EntiteVm(e));
+        }
     }
     
     public void faireJouerChat() {

@@ -56,4 +56,7 @@ public class FileLevel {
         this.path = path;
     }
 
+    public boolean equalsByName(String n) {
+        return nom.equals(n);
+    }
 }

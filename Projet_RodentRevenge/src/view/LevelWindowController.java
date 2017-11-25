@@ -32,6 +32,9 @@ import view_model.*;
  */
 public class LevelWindowController implements Initializable {
     
+    public JeuVm jeu = MainWindowController.jeuVm;
+    private LevelVm lm;
+    
     private boolean isPause = true;
     private TranslateTransition menuTranslation;
     
@@ -51,9 +54,6 @@ public class LevelWindowController implements Initializable {
     
     @FXML
     private Button bQuit, bPlay;
-    
-    //TODO
-    LevelVm lm = new LevelVm();
     
     Timeline timeline = new Timeline(new KeyFrame(
         Duration.millis(1000),
@@ -92,6 +92,11 @@ public class LevelWindowController implements Initializable {
     }
     
     @FXML
+    private void buttonActionSave(ActionEvent event) {        
+        
+    }
+    
+    @FXML
     private void buttonActionQuit(ActionEvent event) {        
         Stage current = (Stage) window.getScene().getWindow();
         current.close();
@@ -99,6 +104,8 @@ public class LevelWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        lm = jeu.getCurrent();
+        
         menuTranslation = new TranslateTransition(Duration.millis(500), menu);
         menuTranslation.setFromX(0);
         menuTranslation.setToX(-200);

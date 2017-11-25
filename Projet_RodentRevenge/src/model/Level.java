@@ -30,9 +30,14 @@ public class Level { //TODO
         params.put("IMAGE_SIZE", tailleImg);
         params.put("HORIZONTAL_MAX", tailleX);
         params.put("VERTICAL_MAX", tailleY);
-        
-        souris = new Souris(gest, 5, 2);
-        gest.addPosition(5, 2, souris);
+    }
+    
+    public boolean ajouter(Souris s){
+        if(gest.addPosition(s.getX(), s.getY(), s)) {
+            souris = s;
+            return true;
+        }
+        return false;
     }
     
     public boolean ajouter(Chat c) { 
