@@ -22,6 +22,11 @@ Pane {
     -fx-border-width: 1;
 }
 
+#launch {
+    -fx-background-image: url("mainBackgroung.jpg");
+    -fx-background-repeat: repeat;
+}
+
 #mainPane {
     -fx-background-image: url("../textures/background.png");
     -fx-background-repeat: repeat;
@@ -57,4 +62,8 @@ Button {
 
 Button:hover {
     -fx-background-color: #3366ff;
+}
+
+Tooltip {
+    -fx-background-color: #ffffff;
 }

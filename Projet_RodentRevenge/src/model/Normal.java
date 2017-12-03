@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class Normal extends StratEtatChat {
 

@@ -9,13 +9,14 @@ import javafx.scene.image.Image;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class Block extends Entite {
     
     public Block(GestPosition g, double x, double y) {
         super(g, x, y, "/resources/textures/block.png");
         TYPE = "Block";
+        CODE = "3";
     }
     
     protected Block(GestPosition g, double x, double y, String img){

@@ -7,13 +7,14 @@ package model;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class Souris extends Entite{
 
     public Souris(GestPosition g, double x, double y) {
         super(g, x, y, "/resources/textures/player.png");
         TYPE = "Souris";
+        CODE = "1";
     }
 
     @Override

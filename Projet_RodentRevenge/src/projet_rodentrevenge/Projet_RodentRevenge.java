@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class Projet_RodentRevenge extends Application {
     
@@ -27,6 +27,8 @@ public class Projet_RodentRevenge extends Application {
         scene.getStylesheets().add("resources/style/style.css");
         
         stage.setScene(scene);
+        
+        stage.setTitle("My Rodent's Revenge");
         stage.show();
     }
 

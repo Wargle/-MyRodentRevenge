@@ -12,9 +12,11 @@ import java.util.Map;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class Level { //TODO
+    private String name;
+    
     public static Map params = new HashMap<String, Object>();
     
     private List<Chat> cs = new ArrayList<>();
@@ -24,8 +26,9 @@ public class Level { //TODO
     private Clock c = new Clock();
     private GestPosition gest;
     
-    public Level(double tailleImg, int tailleX, int tailleY) {
+    public Level(String n, int tailleImg, int tailleX, int tailleY) {
         gest = new GestPosition();
+        name = n;
         
         params.put("IMAGE_SIZE", tailleImg);
         params.put("HORIZONTAL_MAX", tailleX);
@@ -61,6 +64,8 @@ public class Level { //TODO
             c.jouer();
         }
     }
+    
+    public String getName() { return name; }
     
     public Clock getClock() { return c; }
     

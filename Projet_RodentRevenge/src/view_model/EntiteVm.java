@@ -16,7 +16,7 @@ import model.Entite;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class EntiteVm extends ImageView {
 
@@ -32,7 +32,7 @@ public class EntiteVm extends ImageView {
     }
 
     public void setBindX(double value) {
-        bindX.set(value * (double) LevelVm.params.get("IMAGE_SIZE"));
+        bindX.set(value * (int) LevelVm.params.get("IMAGE_SIZE"));
     }
 
     public DoubleProperty bindXProperty() {
@@ -45,7 +45,7 @@ public class EntiteVm extends ImageView {
     }
 
     public void setBindY(double value) {
-        bindY.set(value * (double) LevelVm.params.get("IMAGE_SIZE"));
+        bindY.set(value * (int) LevelVm.params.get("IMAGE_SIZE"));
     }
 
     public DoubleProperty bindYProperty() {

@@ -11,7 +11,7 @@ import model.Clock;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class ClockVm {
 

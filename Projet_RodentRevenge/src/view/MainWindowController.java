@@ -8,20 +8,19 @@ package view;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
@@ -33,13 +32,16 @@ import view_model.ListFileLevel;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class MainWindowController implements Initializable {
     public static JeuVm jeuVm;
     
     @FXML
     private ListView<FileLevelVm> listLevels;
+    
+    @FXML
+    private Button buttonStart;
     
     private ListFileLevel lesLevels = new ListFileLevel();
     
@@ -50,6 +52,8 @@ public class MainWindowController implements Initializable {
             Stage stage = new Stage();
             Scene scene = new Scene((Parent) FXMLLoader.load(getClass().getResource("/fxml/LevelWindow.fxml")));
             stage.setScene(scene);
+            
+            stage.setTitle("My Rodent's Revenge ~ Level " + levelVm.getModel().getNom());
             stage.show();
 
             Stage main = (Stage) listLevels.getScene().getWindow();
@@ -151,6 +155,8 @@ public class MainWindowController implements Initializable {
                 }
             }
         });
+        
+        buttonStart.disableProperty().bind(Bindings.isEmpty(listLevels.getSelectionModel().getSelectedItems()));
         
         generateListLevel();
     }

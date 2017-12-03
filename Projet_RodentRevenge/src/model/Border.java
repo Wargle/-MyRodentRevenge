@@ -9,13 +9,14 @@ import javafx.scene.image.Image;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class Border extends Block {
     
     public Border(GestPosition g, double x, double y) {
         super(g, x, y, "/resources/textures/border.png");
         TYPE = "Border";
+        CODE = "4";
     }
     
     @Override

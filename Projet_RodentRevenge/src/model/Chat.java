@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class Chat extends Entite {
 
@@ -19,6 +19,7 @@ public class Chat extends Entite {
         super(g, x, y, img);
         stratEtat = new Normal(this);
         TYPE = "Chat";
+        CODE = "2";
     }
     
     public Chat(GestPosition g, double x, double y){

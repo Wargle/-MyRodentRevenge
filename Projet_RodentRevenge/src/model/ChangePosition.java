@@ -7,7 +7,7 @@ package model;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class ChangePosition {
     private int changeC, changeL;

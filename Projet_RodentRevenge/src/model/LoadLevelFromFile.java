@@ -7,15 +7,14 @@ package model;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class LoadLevelFromFile implements ILoadLevel{
 
     @Override
-    public Level loadLevel(String pathFile) {
-        Level lvl = new Level(32, 10, 10);
+    public Level loadLevel(String pathFile) { //TODO
+        Level lvl = new Level("1", 32, 30, 10);
         
-        //TODO
         lvl.ajouter(new Souris(lvl.getGest(), 5, 2));
         
         lvl.ajouter(new Chat(lvl.getGest(), 1, 1));

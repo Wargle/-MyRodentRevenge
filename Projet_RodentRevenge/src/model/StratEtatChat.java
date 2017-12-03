@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public abstract class StratEtatChat {
     protected Image image;
@@ -18,7 +18,7 @@ public abstract class StratEtatChat {
     public StratEtatChat(String img, Chat c) {
         chat = c;
         
-        double size = (double) Level.params.get("IMAGE_SIZE");
+        double size = (int) Level.params.get("IMAGE_SIZE");
         image = new Image(img, size, size, true, true);
     }
     

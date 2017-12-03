@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class GestPosition {
     private Map<String, Entite> allPos = new HashMap<String, Entite>();

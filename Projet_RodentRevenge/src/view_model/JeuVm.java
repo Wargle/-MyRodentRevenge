@@ -14,7 +14,7 @@ import model.Souris;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class JeuVm {
     private Jeu model;

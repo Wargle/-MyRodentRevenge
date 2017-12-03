@@ -9,7 +9,7 @@ import java.util.regex.*;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class MyRegex {
     private static Pattern pattern;

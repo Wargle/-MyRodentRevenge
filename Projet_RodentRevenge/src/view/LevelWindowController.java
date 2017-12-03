@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +16,10 @@ import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -24,11 +28,12 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.ChangePosition;
+import static view.MainWindowController.jeuVm;
 import view_model.*;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class LevelWindowController implements Initializable {
     
@@ -93,7 +98,20 @@ public class LevelWindowController implements Initializable {
     
     @FXML
     private void buttonActionSave(ActionEvent event) {        
+        jeu.getModel().save();
         
+        try {            
+            Stage stage = new Stage();
+            Scene scene = new Scene((Parent) FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml")));
+            stage.setScene(scene);
+            stage.show();
+
+            Stage me = (Stage) mainPane.getScene().getWindow();
+            me.close();
+        }
+        catch (IOException e) {
+            System.out.println(e);
+        }
     }
     
     @FXML
@@ -116,10 +134,10 @@ public class LevelWindowController implements Initializable {
         mapControl.put(KeyCode.RIGHT, (s) -> { faireJouerSouris(new ChangePosition(1, 0)); return true; });
         mapControl.put(KeyCode.ESCAPE, (s) -> { togglePlayPause(); return true; });
         
-        mainPane.setMinSize((int) LevelVm.params.get("HORIZONTAL_MAX") * (double) LevelVm.params.get("IMAGE_SIZE"),
-                (int) LevelVm.params.get("VERTICAL_MAX") * (double) LevelVm.params.get("IMAGE_SIZE"));
-        mainPane.setMaxSize((int) LevelVm.params.get("HORIZONTAL_MAX") * (double) LevelVm.params.get("IMAGE_SIZE"),
-                (int) LevelVm.params.get("VERTICAL_MAX") * (double) LevelVm.params.get("IMAGE_SIZE"));
+        mainPane.setMinSize((int) LevelVm.params.get("HORIZONTAL_MAX") * (int) LevelVm.params.get("IMAGE_SIZE"),
+                (int) LevelVm.params.get("VERTICAL_MAX") * (int) LevelVm.params.get("IMAGE_SIZE"));
+        mainPane.setMaxSize((int) LevelVm.params.get("HORIZONTAL_MAX") * (int) LevelVm.params.get("IMAGE_SIZE"),
+                (int) LevelVm.params.get("VERTICAL_MAX") * (int) LevelVm.params.get("IMAGE_SIZE"));
         
         mainPane.getChildren().addAll(lm.getAllEntites());
         

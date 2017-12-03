@@ -14,7 +14,7 @@ import model.*;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class LevelVm {
     public static Map params;

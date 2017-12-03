@@ -14,7 +14,7 @@ import model.FileLevel;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public class FileLevelVm {
 

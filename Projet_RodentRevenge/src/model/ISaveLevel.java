@@ -9,6 +9,6 @@ package model;
  *
  * @author Alexis Arnould
  */
-public interface ILoadLevel {
-    public Level loadLevel(String pathFile);
+public interface ISaveLevel {
+    public void saveLevel(String file, Level level);
 }

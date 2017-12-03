@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 
 /**
  *
- * @author Eleme
+ * @author Alexis Arnould
  */
 public abstract class Entite {
     protected GestPosition refGest;
@@ -18,10 +18,10 @@ public abstract class Entite {
     
     protected double x = 2, y = 3;
     
-    protected String TYPE;
+    protected String TYPE, CODE;
     
     public Entite(GestPosition g, double x, double y, String img){
-        double size = (double) Level.params.get("IMAGE_SIZE");
+        double size = (int) Level.params.get("IMAGE_SIZE");
         refGest = g;
 
         image = new Image(img, size, size, true, true);
@@ -41,6 +41,8 @@ public abstract class Entite {
     public abstract boolean deplacer(ChangePosition cp);
     
     public String getTYPE() { return TYPE; }
+    
+    public String getCODE() { return CODE; }
     
     protected void notifyMove(double oC, double oL) {
         refGest.changePosition(oC, x, oL, y);
