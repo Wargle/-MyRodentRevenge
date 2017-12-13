@@ -20,7 +20,7 @@ public class Border extends Block {
     }
     
     @Override
-    public boolean deplacer(ChangePosition cp) {
+    public boolean deplacer(Position cp) {
         return false;
     }
 }

@@ -23,7 +23,7 @@ public class Level { //TODO
     private List<Block> bs = new ArrayList<>();
     private Entite souris;
     
-    private Clock c = new Clock();
+    private Clock c;
     private GestPosition gest;
     
     public Level(String n, int tailleImg, int tailleX, int tailleY) {
@@ -36,6 +36,9 @@ public class Level { //TODO
     }
     
     public boolean ajouter(Souris s){
+        if(souris != null) {
+            gest.removePosition(souris.getX(), souris.getY());
+        }
         if(gest.addPosition(s.getX(), s.getY(), s)) {
             souris = s;
             return true;
@@ -59,15 +62,30 @@ public class Level { //TODO
         return false;
     }
     
-    public void faireJouerChat() {
-        for(Chat c : cs){
-            c.jouer();
+    public void enlever(int x, int y) {
+        Entite e = gest.removePosition(x, y);
+        switch(e.getTYPE()) {
+            case "Souris": souris = null; break;
+            case "Chat": cs.remove((Chat) e); break;
+            default: bs.remove((Block) e); break;
         }
+    }
+    
+    public void faireJouerChat() {
+        int allBlock = 0;
+        for(Chat c : cs){
+            if(!c.jouer())
+                allBlock++;
+        }
+        if(allBlock == cs.size())
+            Level.endLevel(true);
     }
     
     public String getName() { return name; }
     
     public Clock getClock() { return c; }
+    
+    public void setClock(int s, int m) { c = new Clock(m, s); }
     
     public Entite getSouris() { return souris; }
     
@@ -77,7 +95,13 @@ public class Level { //TODO
         ArrayList<Entite> res = new ArrayList<Entite>();
         res.addAll(cs);
         res.addAll(bs);
-        res.add(souris);
+        if(souris != null)
+            res.add(souris);
         return res;
+    }
+    
+    public static void endLevel(boolean isWin) {
+        System.out.println(isWin);
+        System.exit(0);
     }
 }

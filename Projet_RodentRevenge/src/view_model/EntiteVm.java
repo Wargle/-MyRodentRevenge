@@ -11,7 +11,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.ChangePosition;
+import model.Position;
 import model.Entite;
 
 /**
@@ -84,7 +84,7 @@ public class EntiteVm extends ImageView {
     
     public Entite getModel() { return model; }
     
-    public void deplacer(ChangePosition cp) {
+    public void deplacer(Position cp) {
         model.deplacer(cp);
         updateProperties();
     }

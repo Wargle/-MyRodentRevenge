@@ -20,13 +20,22 @@ public class JeuVm {
     private Jeu model;
     private LevelVm current;
 
-    public JeuVm(String path) {
+    public JeuVm(FileLevelVm path) throws InstantiationError {
         
         model = new Jeu();
-        model.load(path);
+        model.load(path.getModel());
         
-        current = new LevelVm(model.getCurrent());
+        current = new LevelVm(model.getCurrent());        
         current.setAllEntiteVm();
+        current.sourisVm = new EntiteVm(model.getCurrent().getSouris());
+    }
+    
+    public JeuVm() {
+        model = new Jeu();
+        Level lvl = new Level("", 32, 10, 10);
+        lvl.setClock(0, 0);
+        current = new LevelVm(lvl);
+        model.setCurrent(lvl);
     }
     
     public LevelVm getCurrent() { return current; }

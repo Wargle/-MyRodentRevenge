@@ -27,8 +27,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.ChangePosition;
-import static view.MainWindowController.jeuVm;
+import model.Position;
 import view_model.*;
 
 /**
@@ -36,6 +35,10 @@ import view_model.*;
  * @author Alexis Arnould
  */
 public class LevelWindowController implements Initializable {
+    @FunctionalInterface
+    public interface NoParamFunction<NULL> {
+        public void apply();
+    }
     
     public JeuVm jeu = MainWindowController.jeuVm;
     private LevelVm lm;
@@ -43,7 +46,7 @@ public class LevelWindowController implements Initializable {
     private boolean isPause = true;
     private TranslateTransition menuTranslation;
     
-    Map<KeyCode, Predicate> mapControl = new HashMap<KeyCode, Predicate>();
+    Map<KeyCode, NoParamFunction> mapControl = new HashMap<>();
     
     @FXML
     private GridPane window;
@@ -62,13 +65,14 @@ public class LevelWindowController implements Initializable {
     
     Timeline timeline = new Timeline(new KeyFrame(
         Duration.millis(1000),
-        ex -> test2()));
+        ex -> time1sec()));
     
-    void test() {
+    void time05sec() {
         //System.out.println("0.5 sec");
+        lm.faireJouerChat();
     }
-    void test2() {
-        test();
+    void time1sec() {
+        time05sec();
         //System.out.println("1 sec");
         lm.getClockVm().increment();
     }
@@ -87,7 +91,7 @@ public class LevelWindowController implements Initializable {
         isPause = !isPause;
     }
     
-    private void faireJouerSouris(ChangePosition c) {
+    private void faireJouerSouris(Position c) {
         lm.faireJouerSouris(c);
     }
     
@@ -97,9 +101,7 @@ public class LevelWindowController implements Initializable {
     }
     
     @FXML
-    private void buttonActionSave(ActionEvent event) {        
-        jeu.getModel().save();
-        
+    private void buttonActionBackMenu(ActionEvent event) {   
         try {            
             Stage stage = new Stage();
             Scene scene = new Scene((Parent) FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml")));
@@ -112,6 +114,12 @@ public class LevelWindowController implements Initializable {
         catch (IOException e) {
             System.out.println(e);
         }
+    }
+    
+    @FXML
+    private void buttonActionSave(ActionEvent event) {        
+        jeu.getModel().save();
+        buttonActionBackMenu(event);
     }
     
     @FXML
@@ -128,11 +136,11 @@ public class LevelWindowController implements Initializable {
         menuTranslation.setFromX(0);
         menuTranslation.setToX(-200);
     
-        mapControl.put(KeyCode.UP, (s) -> { faireJouerSouris(new ChangePosition(0, -1)); return true; });
-        mapControl.put(KeyCode.DOWN, (s) -> { faireJouerSouris(new ChangePosition(0, 1)); return true; });
-        mapControl.put(KeyCode.LEFT, (s) -> { faireJouerSouris(new ChangePosition(-1, 0)); return true; });
-        mapControl.put(KeyCode.RIGHT, (s) -> { faireJouerSouris(new ChangePosition(1, 0)); return true; });
-        mapControl.put(KeyCode.ESCAPE, (s) -> { togglePlayPause(); return true; });
+        mapControl.put(KeyCode.UP, () -> { faireJouerSouris(new Position(0, -1)); });
+        mapControl.put(KeyCode.DOWN, () -> { faireJouerSouris(new Position(0, 1)); });
+        mapControl.put(KeyCode.LEFT, () -> { faireJouerSouris(new Position(-1, 0)); });
+        mapControl.put(KeyCode.RIGHT, () -> { faireJouerSouris(new Position(1, 0)); });
+        mapControl.put(KeyCode.ESCAPE, () -> { togglePlayPause(); });
         
         mainPane.setMinSize((int) LevelVm.params.get("HORIZONTAL_MAX") * (int) LevelVm.params.get("IMAGE_SIZE"),
                 (int) LevelVm.params.get("VERTICAL_MAX") * (int) LevelVm.params.get("IMAGE_SIZE"));
@@ -141,14 +149,14 @@ public class LevelWindowController implements Initializable {
         
         mainPane.getChildren().addAll(lm.getAllEntites());
         
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), ex -> test()));
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), ex -> time05sec()));
         timeline.setCycleCount(-1);
         
         window.setMaxSize(mainPane.getMaxWidth(), mainPane.getMaxHeight() + topPane.getMaxHeight());
         window.setOnKeyPressed((event) -> {
-            Predicate p = mapControl.get(event.getCode());
+            NoParamFunction p = mapControl.get(event.getCode());
             if(p != null && !isPause)
-                p.test(null);
+                p.apply();
         });
         window.addEventFilter(KeyEvent.KEY_PRESSED, k -> {
             if (k.getCode() == KeyCode.SPACE){
@@ -160,7 +168,7 @@ public class LevelWindowController implements Initializable {
             if(event.getCode() == KeyCode.ESCAPE && isPause)
                 buttonActionQuit(null);
             if(event.getCode() == KeyCode.ENTER && isPause)
-                buttonActionTogglePlayPause( null);
+                buttonActionTogglePlayPause(null);
         });
         
         compteur.textProperty().bind(lm.getClockVm().bindMinProperty().concat(":").concat(lm.getClockVm().bindSecProperty()));

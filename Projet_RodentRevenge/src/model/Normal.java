@@ -5,7 +5,8 @@
  */
 package model;
 
-import javafx.scene.image.Image;
+import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -18,10 +19,12 @@ public class Normal extends StratEtatChat {
     }
 
     @Override
-    public ChangePosition calculMove() {
-        //TODO
-        if(canMove()) {
-            return null;
+    public Position calculMove() {
+        Random r = new Random();
+        List<Position> pos;
+        if(!(pos = posibleMove()).isEmpty()) {
+            int what = r.nextInt(pos.size());
+            return pos.get(what);
         }
         return null;
     }

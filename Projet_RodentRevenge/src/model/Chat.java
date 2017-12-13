@@ -27,27 +27,39 @@ public class Chat extends Entite {
     }
     
     @Override
-    public boolean deplacer(ChangePosition cp) {
-        //TODO
-        x += cp.getChangeC();
-        y += cp.getChangeL();
-        return true;
+    public boolean deplacer(Position cp) {
+        //System.out.println("Chat");
+        double tempX = x + cp.getX(), tempY = y + cp.getY();
+        if(tempX >= 0 && tempX < (int) Level.params.get("HORIZONTAL_MAX") && tempY >= 0 && tempY < (int) Level.params.get("VERTICAL_MAX")) {
+            Entite getE = refGest.getEntite(tempX, tempY);
+            if(getE == null) {
+                x += cp.getX();
+                y += cp.getY();
+                notifyMove(x - cp.getX(), y - cp.getY());
+            }
+        }
+        return false;
     }
     
-    public void jouer() {
-        //TODO
-        ChangePosition cp = stratEtat.calculMove();
+    public boolean jouer() {
+        Position cp = stratEtat.calculMove();
         if(cp == null){
             changerStratEtat(new Sleep(this));
+            return false;
         }
         else {
             changerStratEtat(new Normal(this));
             deplacer(cp);
+            return true;
         }
     }
     
     public void changerStratEtat(StratEtatChat e) {
         stratEtat = e;
         image = e.getImage();
+    }
+    
+    public void sourisMange() {
+        Level.endLevel(false);
     }
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="window" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../resources/style/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CreationWindowController">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" />
+      <ColumnConstraints hgrow="SOMETIMES" />
+   </columnConstraints>
+    <children>
+        <Pane fx:id="mainPane">
+          <children>
+          </children>
+        </Pane>
+        <GridPane fx:id="controlPane" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" />
+               <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+            </columnConstraints>
+            <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />               
+            </rowConstraints>
+         <children>
+             <TextField fx:id="name" text="defaut" GridPane.columnSpan="2" />
+            <TextField text="10" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="xNum" />
+            <TextField fx:id="yNum" text="10" GridPane.rowIndex="2" />
+            <Label text="X" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <ListView fx:id="listEntite" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+         </children>
+        </GridPane>
+        <GridPane fx:id="menu" maxWidth="180.0" prefHeight="${window.height}" prefWidth="180.0">
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="90.0" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" />
+            <RowConstraints minHeight="10.0" prefHeight="35.0" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" />
+            <RowConstraints minHeight="10.0" prefHeight="35.0" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" />
+            <RowConstraints minHeight="10.0" prefHeight="35.0" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" />
+            <RowConstraints minHeight="10.0" prefHeight="35.0" />            
+         </rowConstraints>
+         <children>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="My Rodent Revenge&#10;Creation" textAlignment="CENTER" GridPane.halignment="CENTER" />
+            <Button fx:id="bQuit11" mnemonicParsing="false" onAction="#buttonActionBegin" text="Commencer" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <tooltip>
+                  <Tooltip text="Sauvegarder et Retourner au menu" />
+               </tooltip>
+            </Button>
+            <Button fx:id="bQuit1" mnemonicParsing="false" onAction="#buttonActionSave" text="Sauvegarder" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <tooltip>
+                  <Tooltip text="Sauvegarder et Retourner au menu" />
+               </tooltip>
+            </Button>
+            <Button fx:id="bBack" mnemonicParsing="false" onAction="#buttonActionBackMenu" text="Retour au Menu" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+               <tooltip>
+                  <Tooltip text="Retourner au menu" />
+               </tooltip>
+            </Button>
+            <Button fx:id="bQuit" mnemonicParsing="false" onAction="#buttonActionQuit" text="Quitter" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+               <tooltip>
+                  <Tooltip text="Quitter le jeu" />
+               </tooltip>
+            </Button>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="180.0" />
+         </columnConstraints>
+      </GridPane>
+    </children>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
