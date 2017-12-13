@@ -56,13 +56,17 @@ public class Jeu {
         catch (Exception e) { }
     }
     
-    public void load(String path) {
+    public void load(FileLevel path) throws InstantiationError{
         current = loader.loadLevel(path);
     }
     
     public void save() {
-        saver.saveLevel(System.getProperty("user.dir").replace("\\dist", "") + "/file/savedLevel.txt", current);
+        save(System.getProperty("user.dir").replace("\\dist", "") + "/file/savedLevel.txt");
         reWriteSpecific(current.getName(), "current");
+    }
+    
+    public void save(String path) {
+        saver.saveLevel(path, current);
     }
     
     public void finish() {
@@ -70,6 +74,8 @@ public class Jeu {
     }
     
     public Level getCurrent() { return current; }
+    
+    public void setCurrent(Level lvl) { current = lvl; }
     
     public List<Entite> getAllEntite() { return current.getAllEntites(); }
 }

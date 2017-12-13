@@ -10,5 +10,5 @@ package model;
  * @author Alexis Arnould
  */
 public interface ILoadLevel {
-    public Level loadLevel(String pathFile);
+    public Level loadLevel(FileLevel pathFile);
 }

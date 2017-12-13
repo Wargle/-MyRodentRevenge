@@ -17,7 +17,7 @@ and open the template in the editor.
     src: url("game_over.ttf");
 }
 
-Pane {
+Pane, #controlPane {
     -fx-border-color: #000000;
     -fx-border-width: 1;
 }
@@ -46,7 +46,7 @@ Pane {
 
 #menu .label {
     -fx-alignment: center;
-    -fx-background-color: linear-gradient(#3366ff, #3333ff);
+    -fx-background-image: url("mainBackgroung.jpg");
     -fx-text-fill: black;
     -fx-font-family: "Game Over";
     -fx-font-size: 42;

@@ -37,17 +37,19 @@ import view_model.ListFileLevel;
 public class MainWindowController implements Initializable {
     public static JeuVm jeuVm;
     
+    private FileLevelVm saved;
+    
     @FXML
     private ListView<FileLevelVm> listLevels;
     
     @FXML
-    private Button buttonStart;
+    private Button buttonStart, buttonCont;
     
     private ListFileLevel lesLevels = new ListFileLevel();
     
     private void startLevel(FileLevelVm levelVm) {
         try {
-            jeuVm = new JeuVm(levelVm.getModel().getPath());
+            jeuVm = new JeuVm(levelVm);
             
             Stage stage = new Stage();
             Scene scene = new Scene((Parent) FXMLLoader.load(getClass().getResource("/fxml/LevelWindow.fxml")));
@@ -62,6 +64,10 @@ public class MainWindowController implements Initializable {
         catch (IOException e) {
             System.out.println(e);
         }
+        catch (InstantiationError ie) {
+            System.out.println("Wrong file");
+            levelVm.setBindColor(Color.RED);
+        }
     }
     
     @FXML
@@ -74,7 +80,27 @@ public class MainWindowController implements Initializable {
     
     @FXML
     private void buttonActionContinue(ActionEvent event) {
-        
+        if(saved != null) {
+            startLevel(saved);
+        } 
+    }
+    
+    @FXML
+    private void buttonActionCreate(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            Scene scene = new Scene((Parent) FXMLLoader.load(getClass().getResource("/fxml/LevelCreationWindow.fxml")));
+            stage.setScene(scene);
+
+            stage.setTitle("My Rodent's Revenge ~ Creation");
+            stage.show();
+
+            Stage main = (Stage) listLevels.getScene().getWindow();
+            main.close();
+        }
+        catch (IOException e) {
+            System.out.println(e.getCause());
+        }
     }
     
     @FXML
@@ -116,7 +142,11 @@ public class MainWindowController implements Initializable {
                 else {
                     switch(completed.get(name)) {
                         case "done" : lesLevels.ajouterFileLevel(new FileLevelVm(name, f.getPath(), Color.GREEN)); break;
-                        case "current" : lesLevels.ajouterFileLevel(new FileLevelVm(name, f.getPath(), Color.PURPLE)); break;
+                        case "current" : 
+                            saved = new FileLevelVm(name, System.getProperty("user.dir").replace("\\dist", "") + "/file/savedLevel.txt", Color.PURPLE);
+                            lesLevels.ajouterFileLevel(new FileLevelVm(name, f.getPath(), Color.PURPLE)); 
+                            buttonCont.disableProperty().set(false); 
+                            break;
                         default: lesLevels.ajouterFileLevel(new FileLevelVm(name, f.getPath()));
                     }
                 }

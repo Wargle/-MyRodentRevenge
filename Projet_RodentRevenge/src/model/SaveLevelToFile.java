@@ -26,10 +26,13 @@ public class SaveLevelToFile implements ISaveLevel {
             writer.write(x + "\n");
             writer.write(y + "");
             
-            for(int ix = 0; ix < x; ix++) {
+            writer.write("\n" + level.getClock().getMin() + "\n");
+            writer.write(level.getClock().getSec()+ "");
+            
+            for(int iy = 0; iy < y; iy++) {
                 writer.write("\n");
-                for(int iy = 0; iy < y; iy++) {
-                    if(iy != 0)
+                for(int ix = 0; ix < x; ix++) {
+                    if(ix != 0)
                         writer.write(",");
                     Entite e = level.getGest().getEntite(ix, iy);
                     if(e != null)
@@ -38,8 +41,6 @@ public class SaveLevelToFile implements ISaveLevel {
                         writer.write("0");
                 }
             }
-            writer.write("\n" + level.getClock().getSec() + "\n");
-            writer.write(level.getClock().getMin()+ "");
             
             writer.close();
             

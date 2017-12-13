@@ -5,7 +5,8 @@
  */
 package model;
 
-import javafx.scene.image.Image;
+import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -18,10 +19,10 @@ public class Sleep extends StratEtatChat {
     }
 
     @Override
-    public ChangePosition calculMove() {
-        //TODO
-        if(canMove()) {
-            return new ChangePosition(0, 1);
+    public Position calculMove() {
+        List<Position> pos;
+        if(!(pos = posibleMove()).isEmpty()) {
+            return new Position(0, 0);
         }
         return null;
     }

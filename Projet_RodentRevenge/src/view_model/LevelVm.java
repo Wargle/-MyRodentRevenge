@@ -26,7 +26,7 @@ public class LevelVm {
         public ListProperty<EntiteVm> getImagesProperty(){ return imagesProperty; }
         
     private ClockVm cm;
-    private EntiteVm sourisVm;
+    public EntiteVm sourisVm;
     
     public ClockVm getClockVm() { return cm; }
     public EntiteVm getSourisVm() { return sourisVm; }
@@ -40,28 +40,12 @@ public class LevelVm {
         cm = new ClockVm(model.getClock());
     }
     
-    /*public LevelVm() { //TODO
-        params = model.params;
-        
-        model = new Level(32, 12, 12);
-        cm = new ClockVm(model.getClock());
-        sourisVm = new EntiteVm(model.getSouris());
-    }*/
-    
     public Level getModel() { return model; }
-        
-    /*public void ajouterChat(EntiteVm iv) { 
-        if(model.ajouter((Chat)iv.getModel()))
-            obsImages.add(iv); 
-    }
-    
-    public void ajouterBlock(EntiteVm iv) { 
-        if(model.ajouter((Block)iv.getModel()))
-            obsImages.add(iv); 
-    }*/
     
     public void setAllEntiteVm() {
-        sourisVm = new EntiteVm(model.getSouris());
+        obsImages.clear();
+        if(sourisVm != null)
+            sourisVm = new EntiteVm(model.getSouris());
         for(Entite e : model.getAllEntites()) {
             obsImages.add(new EntiteVm(e));
         }
@@ -74,7 +58,7 @@ public class LevelVm {
         }
     }
     
-    public void faireJouerSouris(ChangePosition cp) {
+    public void faireJouerSouris(Position cp) {
         sourisVm.deplacer(cp);
         for(EntiteVm em : obsImages)
             em.updateProperties();
@@ -83,7 +67,8 @@ public class LevelVm {
     public ObservableList<EntiteVm> getAllEntites() {
         ObservableList<EntiteVm> res = FXCollections.observableArrayList();
         res.addAll(obsImages);
-        res.add(sourisVm);
+        if(sourisVm != null)
+            res.add(sourisVm);
         return res;
     }
 }

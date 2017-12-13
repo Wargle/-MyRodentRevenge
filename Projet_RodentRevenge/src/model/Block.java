@@ -24,20 +24,21 @@ public class Block extends Entite {
     }
     
     @Override
-    public boolean deplacer(ChangePosition cp) {
-        double tempX = x + cp.getChangeC(), tempY = y + cp.getChangeL();
+    public boolean deplacer(Position cp) {
+        //System.out.println("Block");
+        double tempX = x + cp.getX(), tempY = y + cp.getY();
         if(tempX >= 0 && tempX < (int) Level.params.get("HORIZONTAL_MAX") && tempY >= 0 && tempY < (int) Level.params.get("VERTICAL_MAX")) {
             Entite getE = refGest.getEntite(tempX, tempY);
             if(getE == null) {
-                x += cp.getChangeC();
-                y += cp.getChangeL();
-                notifyMove(x - cp.getChangeC(), y - cp.getChangeL());
+                x += cp.getX();
+                y += cp.getY();
+                notifyMove(x - cp.getX(), y - cp.getY());
             }
             else {
                 if(!getE.getTYPE().equals("Chat") && getE.deplacer(cp)) {
-                    x += cp.getChangeC();
-                    y += cp.getChangeL();
-                    notifyMove(x - cp.getChangeC(), y - cp.getChangeL());
+                    x += cp.getX();
+                    y += cp.getY();
+                    notifyMove(x - cp.getX(), y - cp.getY());
                 }
                 else
                     return false;

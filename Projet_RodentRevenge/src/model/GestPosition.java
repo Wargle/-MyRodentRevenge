@@ -5,8 +5,11 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  *
@@ -17,8 +20,8 @@ public class GestPosition {
     
     public GestPosition(){ }
     
-    public boolean addPosition(double c, double l, Entite e) {
-        String pos = c + "x" + l;
+    public boolean addPosition(double x, double y, Entite e) {
+        String pos = x + "x" + y;
         if(!allPos.containsKey(pos)) {
             allPos.put(pos, e);
             return true;
@@ -26,13 +29,22 @@ public class GestPosition {
         return false;
     }
     
-    public Entite getEntite(double c, double l) {
-        String req = c + "x" + l;
+    public Entite removePosition(double x, double y) {
+        String pos = x + "x" + y;
+        Entite e = null;
+        if(allPos.containsKey(pos)) {
+            e = allPos.remove(pos);
+        }
+        return e;
+    }
+    
+    public Entite getEntite(double x, double y) {
+        String req = x + "x" + y;
         return allPos.get(req);
     }
     
-    public void changePosition(double oC, double nC, double oL, double nL) {
-        String oldP = oC + "x" + oL, newP = nC + "x" + nL;
+    public void changePosition(double oX, double nX, double oY, double nY) {
+        String oldP = oX + "x" + oY, newP = nX + "x" + nY;
         if(allPos.containsKey(oldP) && !allPos.containsKey(newP)) {
             Entite e = allPos.get(oldP);
             allPos.remove(oldP);

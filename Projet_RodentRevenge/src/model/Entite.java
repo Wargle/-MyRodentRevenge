@@ -38,7 +38,7 @@ public abstract class Entite {
     public double getY() { return y; }
     public void setY(double y) { this.y = y; }
     
-    public abstract boolean deplacer(ChangePosition cp);
+    public abstract boolean deplacer(Position cp);
     
     public String getTYPE() { return TYPE; }
     
