@@ -44,6 +44,8 @@ public abstract class Entite {
     
     public String getCODE() { return CODE; }
     
+    public GestPosition getGest() { return refGest; }
+    
     protected void notifyMove(double oC, double oL) {
         refGest.changePosition(oC, x, oL, y);
     }

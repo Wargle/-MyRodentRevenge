@@ -20,11 +20,20 @@ public class Normal extends StratEtatChat {
 
     @Override
     public Position calculMove() {
-        Random r = new Random();
-        List<Position> pos;
-        if(!(pos = posibleMove()).isEmpty()) {
-            int what = r.nextInt(pos.size());
-            return pos.get(what);
+        double xC = chat.getX(), yC = chat.getY(), xS = chat.getGest().getXSouris(), yS = chat.getGest().getYSouris(), minD = 1000;        
+        Position move = null;
+        
+        List<Position> pos = posibleMove();
+        
+        if(!pos.isEmpty()) {
+            for(Position p : pos) {
+                double d = Math.sqrt(Math.pow((xC + p.getX() - xS), 2) + Math.pow((yC + p.getY() - yS), 2));
+                if(d < minD) {
+                    minD = d;
+                    move = p;
+                }
+            }
+            return move;
         }
         return null;
     }

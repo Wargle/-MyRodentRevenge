@@ -152,7 +152,8 @@ public class LevelWindowController implements Initializable {
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), ex -> time05sec()));
         timeline.setCycleCount(-1);
         
-        window.setMaxSize(mainPane.getMaxWidth(), mainPane.getMaxHeight() + topPane.getMaxHeight());
+        window.setMinSize(mainPane.getMaxWidth(), mainPane.getMaxHeight() + topPane.getMaxHeight());
+            
         window.setOnKeyPressed((event) -> {
             NoParamFunction p = mapControl.get(event.getCode());
             if(p != null && !isPause)

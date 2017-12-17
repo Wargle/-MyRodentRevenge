@@ -17,8 +17,14 @@ import java.util.Map.Entry;
  */
 public class GestPosition {
     private Map<String, Entite> allPos = new HashMap<String, Entite>();
+    public double xSouris, ySouris;
     
     public GestPosition(){ }
+    
+    public void notifySourisMove(double x, double y) {
+        xSouris = x;
+        ySouris = y;
+    }
     
     public boolean addPosition(double x, double y, Entite e) {
         String pos = x + "x" + y;
@@ -51,4 +57,8 @@ public class GestPosition {
             allPos.put(newP, e);
         }
     }
+    
+    public double getXSouris() { return xSouris; }
+    
+    public double getYSouris() { return ySouris; }
 }

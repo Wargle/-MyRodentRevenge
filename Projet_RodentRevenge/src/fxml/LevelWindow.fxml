@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" stylesheets="@../resources/style/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LevelWindowController">
+<GridPane fx:id="window" stylesheets="@../resources/style/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LevelWindowController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
        <Pane fx:id="topPane" maxHeight="25.0" minHeight="25.0">
@@ -61,11 +61,8 @@
                </tooltip></Button>
          </children>
          <columnConstraints>
-            <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="180.0" />
+            <ColumnConstraints prefWidth="180.0" />
          </columnConstraints>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
       </GridPane>
    </children>
 </GridPane>

@@ -27,12 +27,14 @@ public class Souris extends Entite{
                 x += cp.getX();
                 y += cp.getY();
                 notifyMove(x - cp.getX(), y - cp.getY());
+                refGest.notifySourisMove(x, y);
             }
             else {
                 if(!getE.getTYPE().equals("Chat") && getE.deplacer(cp)) {
                     x += cp.getX();
                     y += cp.getY();
                     notifyMove(x - cp.getX(), y - cp.getY());
+                    refGest.notifySourisMove(x, y);
                 }
             }
             return true;

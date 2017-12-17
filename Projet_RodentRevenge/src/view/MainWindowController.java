@@ -62,7 +62,7 @@ public class MainWindowController implements Initializable {
             main.close();
         }
         catch (IOException e) {
-            System.out.println(e);
+            System.out.println(e.getCause());
         }
         catch (InstantiationError ie) {
             System.out.println("Wrong file");

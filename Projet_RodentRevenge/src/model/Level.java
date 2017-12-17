@@ -41,6 +41,7 @@ public class Level { //TODO
         }
         if(gest.addPosition(s.getX(), s.getY(), s)) {
             souris = s;
+            gest.notifySourisMove(s.getX(), s.getY());
             return true;
         }
         return false;
