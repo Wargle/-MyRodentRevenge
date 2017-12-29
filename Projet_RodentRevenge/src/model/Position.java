@@ -6,7 +6,7 @@
 package model;
 
 /**
- *
+ * Classe qui permet de stocker des positions pour un déplacement d'Entite
  * @author Alexis Arnould
  */
 public class Position {

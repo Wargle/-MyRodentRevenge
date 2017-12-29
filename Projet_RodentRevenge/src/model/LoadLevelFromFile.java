@@ -13,7 +13,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- *
+ * Classe qui permet de convertir un fichier txt en niveau
+ * Utilise une liste d'intanciation pour les Entite
  * @author Alexis Arnould
  */
 public class LoadLevelFromFile implements ILoadLevel{
@@ -33,6 +34,12 @@ public class LoadLevelFromFile implements ILoadLevel{
         whatEntite.add((l, x, y) -> { l.ajouter(new Border(l.getGest(), x, y)); });
     }
     
+    /**
+     * Convertit la fichier en niveau
+     * @param pathFile : la fichier à convertir
+     * @return le niveau
+     * @throws InstantiationError 
+     */
     @Override
     public Level loadLevel(FileLevel pathFile) throws InstantiationError {
         String nom;

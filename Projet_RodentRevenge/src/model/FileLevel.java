@@ -6,7 +6,7 @@
 package model;
 
 /**
- *
+ * Classe utilitaire pour stocker des informations sur un fichier de nveau
  * @author Alexis Arnould
  */
 public class FileLevel {

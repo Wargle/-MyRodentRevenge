@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- *
+ * Classe qui permet de stocker les positions de toutes les Entites du niveau
  * @author Alexis Arnould
  */
 public class GestPosition {
@@ -21,11 +21,23 @@ public class GestPosition {
     
     public GestPosition(){ }
     
+    /**
+     * Notifie que la Souris à changer de Position
+     * @param x : la nouvelle coordonnée x de la Souris
+     * @param y : la nouvelle coordonnée y de la Souris
+     */
     public void notifySourisMove(double x, double y) {
         xSouris = x;
         ySouris = y;
     }
     
+    /**
+     * Enregistre une nouvelle Entite
+     * @param x : la coordonnée x de l'Entite
+     * @param y : la coordonnée y de l'Entite
+     * @param e : l'Entite
+     * @return si oui on non l'Entite a pu être enregistrée
+     */
     public boolean addPosition(double x, double y, Entite e) {
         String pos = x + "x" + y;
         if(!allPos.containsKey(pos)) {
@@ -35,6 +47,12 @@ public class GestPosition {
         return false;
     }
     
+    /**
+     * Supprime une Entite
+     * @param x : la coordonnée x de l'Entite
+     * @param y : la coordonnée y de l'Entite
+     * @return l'Entite supprimé
+     */
     public Entite removePosition(double x, double y) {
         String pos = x + "x" + y;
         Entite e = null;
@@ -44,11 +62,24 @@ public class GestPosition {
         return e;
     }
     
+    /**
+     * Permet d'obtenir une Entite
+     * @param x : la coordonnée x de l'Entite
+     * @param y : la coordonnée y de l'Entite
+     * @return l'Entite
+     */
     public Entite getEntite(double x, double y) {
         String req = x + "x" + y;
         return allPos.get(req);
     }
     
+    /**
+     * Notifie qu'une Entite a été déplacé
+     * @param oX : l'ancienne coordonnée x de l'Entite
+     * @param nX : l'ancienne coordonnée y de l'Entite
+     * @param oY : la nouvelle coordonnée x de l'Entite
+     * @param nY : la nouvelle coordonnée y de l'Entite 
+     */
     public void changePosition(double oX, double nX, double oY, double nY) {
         String oldP = oX + "x" + oY, newP = nX + "x" + nY;
         if(allPos.containsKey(oldP) && !allPos.containsKey(newP)) {

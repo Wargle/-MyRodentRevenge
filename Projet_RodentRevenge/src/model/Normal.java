@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- *
+ * Classe Concrete du pattern Strategie
  * @author Alexis Arnould
  */
 public class Normal extends StratEtatChat {
@@ -18,6 +18,10 @@ public class Normal extends StratEtatChat {
         super("/resources/textures/enemyNormal.png", c);
     }
 
+    /**
+     * Méthode concrete : Choisit une position pour se rapprocher de la Souris
+     * @return la position choisie
+     */
     @Override
     public Position calculMove() {
         double xC = chat.getX(), yC = chat.getY(), xS = chat.getGest().getXSouris(), yS = chat.getGest().getYSouris(), minD = 1000;        

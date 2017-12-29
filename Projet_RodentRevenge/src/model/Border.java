@@ -8,7 +8,7 @@ package model;
 import javafx.scene.image.Image;
 
 /**
- *
+ * Classe fille d'Entite correspondant aux Blocs
  * @author Alexis Arnould
  */
 public class Border extends Block {
@@ -19,6 +19,11 @@ public class Border extends Block {
         CODE = "4";
     }
     
+    /**
+     * Renvoit false qu'importe la position
+     * @param cp : la position
+     * @return false
+     */
     @Override
     public boolean deplacer(Position cp) {
         return false;

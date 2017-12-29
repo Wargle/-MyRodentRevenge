@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * Classe qui permet de stocker toutes les Entites
  * @author Alexis Arnould
  */
-public class Level { //TODO
+public class Level {
     private String name;
     
     public static Map params = new HashMap<String, Object>();
@@ -35,6 +35,11 @@ public class Level { //TODO
         params.put("VERTICAL_MAX", tailleY);
     }
     
+    /**
+     * Ajoute une Souris au niveau
+     * @param s : la Souris
+     * @return 
+     */
     public boolean ajouter(Souris s){
         if(souris != null) {
             gest.removePosition(souris.getX(), souris.getY());
@@ -47,6 +52,11 @@ public class Level { //TODO
         return false;
     }
     
+    /**
+     * Ajoute un Chat au niveau
+     * @param c : le Chat
+     * @return 
+     */
     public boolean ajouter(Chat c) { 
         if(gest.addPosition(c.getX(), c.getY(), c)) {
             cs.add(c); 
@@ -55,6 +65,11 @@ public class Level { //TODO
         return false;
     }
     
+    /**
+     * Ajoute un Block ou Border au niveau
+     * @param b : le Block/Border
+     * @return 
+     */
     public boolean ajouter(Block b) { 
         if(gest.addPosition(b.getX(), b.getY(), b)) {
             bs.add(b);
@@ -63,6 +78,11 @@ public class Level { //TODO
         return false;
     }
     
+    /**
+     * Enleve une Entite du niveau
+     * @param x : la coordonnée x de l'Entite
+     * @param y : la coordonnée y de l'Entite
+     */
     public void enlever(int x, int y) {
         Entite e = gest.removePosition(x, y);
         switch(e.getTYPE()) {
@@ -72,6 +92,9 @@ public class Level { //TODO
         }
     }
     
+    /**
+     * Fait jouer à tour de rôle tous les Chats du niveau
+     */
     public void faireJouerChat() {
         int allBlock = 0;
         for(Chat c : cs){
@@ -92,6 +115,10 @@ public class Level { //TODO
     
     public GestPosition getGest() { return gest; }
     
+    /**
+     * Renvoit toutes les Entites du niveau
+     * @return la liste des Entites
+     */
     public ArrayList<Entite> getAllEntites() {
         ArrayList<Entite> res = new ArrayList<Entite>();
         res.addAll(cs);
@@ -101,6 +128,10 @@ public class Level { //TODO
         return res;
     }
     
+    /**
+     * Specifie quand le niveau est fini
+     * @param isWin  : si le joueur à gagner ou non
+     */
     public static void endLevel(boolean isWin) {
         System.out.println(isWin);
         System.exit(0);

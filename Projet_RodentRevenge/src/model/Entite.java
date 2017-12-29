@@ -8,7 +8,7 @@ package model;
 import javafx.scene.image.Image;
 
 /**
- *
+ * Classe abstraite d'un élément du Jeu
  * @author Alexis Arnould
  */
 public abstract class Entite {
@@ -46,6 +46,11 @@ public abstract class Entite {
     
     public GestPosition getGest() { return refGest; }
     
+    /**
+     * Notifie au Gestionnaire qu'elle a bougée
+     * @param oC : l'ancienne coordonnée x de l'Entite
+     * @param oL : l'ancienne coordonnée y de l'Entite
+     */
     protected void notifyMove(double oC, double oL) {
         refGest.changePosition(oC, x, oL, y);
     }

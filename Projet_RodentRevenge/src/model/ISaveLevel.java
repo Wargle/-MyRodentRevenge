@@ -6,9 +6,14 @@
 package model;
 
 /**
- *
+ * Interface pour la sauvegarde d'un niveau
  * @author Alexis Arnould
  */
 public interface ISaveLevel {
+    /**
+     * Permet de convertir un niveau en fichier
+     * @param file : le fichier
+     * @param level : le niveau
+     */
     public void saveLevel(String file, Level level);
 }

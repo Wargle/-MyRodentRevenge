@@ -12,7 +12,7 @@ import java.util.Map;
 import javafx.scene.image.Image;
 
 /**
- *
+ * Classe utilisant un pattern Strategie pour definir le comportement du Chat selon son état
  * @author Alexis Arnould
  */
 public abstract class StratEtatChat {
@@ -26,7 +26,10 @@ public abstract class StratEtatChat {
         image = new Image(img, size, size, true, true);
     }
     
-    
+    /**
+     * Permet d'avoir l'ensemble des positions accessibles à partir de la position du Chat
+     * @return la liste des positions
+     */
     protected List<Position> posibleMove() {
         List<Position> posibles = new ArrayList<>();
         GestPosition g = chat.refGest;
@@ -48,6 +51,10 @@ public abstract class StratEtatChat {
         return posibles;
     }
     
+    /**
+     * Methode abstraite qui permet de choisir quelle est la meilleur position dans la liste des possibles
+     * @return la position choisie
+     */
     public abstract Position calculMove();
     
     public Image getImage() { return image; }

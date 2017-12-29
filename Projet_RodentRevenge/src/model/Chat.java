@@ -8,7 +8,7 @@ package model;
 import javafx.scene.image.Image;
 
 /**
- *
+ * Classe fille d'Entite correspondant aux Ennemis
  * @author Alexis Arnould
  */
 public class Chat extends Entite {
@@ -26,6 +26,11 @@ public class Chat extends Entite {
         this(g, x, y, "/resources/textures/enemyNormal.png");
     }
     
+    /**
+     * Permet de déplacer le Chat vers une position
+     * @param cp La position vers laquelle le Chat bouge
+     * @return si le Chat a pu se deplacer
+     */
     @Override
     public boolean deplacer(Position cp) {
         //System.out.println("Chat");
@@ -41,6 +46,10 @@ public class Chat extends Entite {
         return false;
     }
     
+    /**
+     * Fait jouer le Chat
+     * @return si le chat a pu jouer ou non
+     */
     public boolean jouer() {
         Position cp = stratEtat.calculMove();
         if(cp == null){
@@ -54,11 +63,18 @@ public class Chat extends Entite {
         }
     }
     
+    /**
+     * Change l'état du Chat
+     * @param e : le nouvel état
+     */
     public void changerStratEtat(StratEtatChat e) {
         stratEtat = e;
         image = e.getImage();
     }
     
+    /**
+     * Specifie que le Chat a attrapé la Souris
+     */
     public void sourisMange() {
         Level.endLevel(false);
     }

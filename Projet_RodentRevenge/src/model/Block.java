@@ -8,7 +8,7 @@ package model;
 import javafx.scene.image.Image;
 
 /**
- *
+ * Classe fille d'Entite correspondant aux Blocs
  * @author Alexis Arnould
  */
 public class Block extends Entite {
@@ -23,6 +23,11 @@ public class Block extends Entite {
         super(g, x, y, img);
     }
     
+    /**
+     * Permet de déplacer le Block vers une position
+     * @param cp La position vers laquelle le Block bouge
+     * @return si le Block a pu se deplacer
+     */
     @Override
     public boolean deplacer(Position cp) {
         //System.out.println("Block");
@@ -35,7 +40,7 @@ public class Block extends Entite {
                 notifyMove(x - cp.getX(), y - cp.getY());
             }
             else {
-                if(!getE.getTYPE().equals("Chat") && getE.deplacer(cp)) {
+                if(/*!getE.getTYPE().equals("Chat") && */getE.deplacer(cp)) {
                     x += cp.getX();
                     y += cp.getY();
                     notifyMove(x - cp.getX(), y - cp.getY());

@@ -9,11 +9,16 @@ import java.io.File;
 import java.io.PrintWriter;
 
 /**
- *
+ * Classe qui permet de convertir un niveau en fichier txt
  * @author Alexis Arnould
  */
 public class SaveLevelToFile implements ISaveLevel {
 
+    /**
+     * Permet la conversion du niveau
+     * @param file : le path du fichier de sauvegarde
+     * @param level : le niveau à sauvegarder
+     */
     @Override
     public void saveLevel(String file, Level level) {
         try {

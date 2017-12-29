@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- *
+ * Classe Concrete du pattern Strategie
  * @author Alexis Arnould
  */
 public class Sleep extends StratEtatChat {
@@ -18,6 +18,10 @@ public class Sleep extends StratEtatChat {
         super("/resources/textures/enemySleep.png", c);
     }
 
+    /**
+     * Méthode concrète
+     * @return null si le Chat ne peut pas bouger sinon le Chat change d'état
+     */
     @Override
     public Position calculMove() {
         List<Position> pos;

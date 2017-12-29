@@ -6,7 +6,7 @@
 package model;
 
 /**
- *
+ * Classe fille d'Entite correspondant au Joueur
  * @author Alexis Arnould
  */
 public class Souris extends Entite{
@@ -17,6 +17,11 @@ public class Souris extends Entite{
         CODE = "1";
     }
 
+    /**
+     * Permet de déplacer la souris vers une position
+     * @param cp La position vers laquelle la souris bouge
+     * @return si la Souris a pu se deplacer
+     */
     @Override
     public boolean deplacer(Position cp) {
         //System.out.println("Souris");

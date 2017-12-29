@@ -8,13 +8,19 @@ package model;
 import java.util.regex.*;
 
 /**
- *
+ * Classe utilitaire pour faciliter l'utlisation de regex
  * @author Alexis Arnould
  */
 public class MyRegex {
     private static Pattern pattern;
     private static Matcher matcher;
 
+    /**
+     * Teste si une chaine de caractère correspond à un pattern
+     * @param regex : le pattern
+     * @param match : la chaine à tester
+     * @return 
+     */
     public static boolean isMatch(String regex, String match) {
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(match);

@@ -6,9 +6,14 @@
 package model;
 
 /**
- *
+ * Interface pour le chargement d'un niveau
  * @author Alexis Arnould
  */
 public interface ILoadLevel {
+    /**
+     * Permet de convertir un fichier en niveau
+     * @param pathFile : le fichier à chatger
+     * @return le niveau
+     */
     public Level loadLevel(FileLevel pathFile);
 }

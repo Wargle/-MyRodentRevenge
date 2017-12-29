@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
+ * Classe qui correspond à la façade du systeme
  * @author Alexis Arnould
  */
 public class Jeu {
@@ -25,6 +25,11 @@ public class Jeu {
         saver = new SaveLevelToFile();
     }
     
+    /**
+     * Permet de mettre à jour le fichier d'informations sur les niveaux
+     * @param name : le nom du niveau
+     * @param info : l'information
+     */
     private void reWriteSpecific(String name, String info) {
         try {
             List<String> lines = new ArrayList<>();
@@ -56,19 +61,34 @@ public class Jeu {
         catch (Exception e) { }
     }
     
+    /**
+     * Charge un niveau selon un fichier
+     * @param path : le fichier txt du niveau
+     * @throws InstantiationError 
+     */
     public void load(FileLevel path) throws InstantiationError{
         current = loader.loadLevel(path);
     }
     
+    /**
+     * Sauvegarde ue niveau
+     */
     public void save() {
         save(System.getProperty("user.dir").replace("\\dist", "") + "/file/savedLevel.txt");
         reWriteSpecific(current.getName(), "current");
     }
     
+    /**
+     * Sauvegarde un niveau vers un fuichier txt
+     * @param path : le fichier
+     */
     public void save(String path) {
         saver.saveLevel(path, current);
     }
     
+    /**
+     * Met fin au jeu
+     */
     public void finish() {
         //TODO
     }

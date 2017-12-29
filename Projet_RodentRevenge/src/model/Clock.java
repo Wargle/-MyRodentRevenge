@@ -6,7 +6,7 @@
 package model;
 
 /**
- *
+ * Classe qui stocker l'état du compteur du Jeu
  * @author Alexis Arnould
  */
 public class Clock {
@@ -60,6 +60,9 @@ public class Clock {
         this(0, 0);
     }
 
+    /**
+     * Increment d'une seconde le compteur
+     */
     public void increment(){
         sec++;
         if(sec == 60){
